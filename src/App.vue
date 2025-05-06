@@ -1,5 +1,5 @@
 <template>
-  <TheIcon icon="home"></TheIcon>
+  <router-view></router-view>
 </template>
 
 <script setup lang="ts">
