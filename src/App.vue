@@ -1,10 +1,12 @@
 <template>
-  <router-view></router-view>
+  <header class="header">
+    <NavBar />
+  </header>
 </template>
 
 <script setup lang="ts">
 import "./assets/base.css";
-import TheIcon from "./components/TheIcon.vue";
+import NavBar from "./components/NavBar.vue";
 </script>
 
 <style scoped></style>
