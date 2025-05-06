@@ -11,7 +11,7 @@
         />
         <div class="postInfo">
           <div class="postMeta">
-            <img src="" alt="" class="avatar" />
+            <TheAvatar />
             <span>張小風</span>
             <span class="postPubDate">12小時以前發布</span>
             <div class="postActions">
@@ -40,6 +40,7 @@ import PostDetails from "../components/PostDetails.vue";
 import PostItem from "../components/PostItem.vue";
 import PostList from "../components/PostList.vue";
 import PostUpload from "../components/PostUpload.vue";
+import TheAvatar from "../components/TheAvatar.vue";
 import TheIcon from "../components/TheIcon.vue";
 
 // const store = useStore();

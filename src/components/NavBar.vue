@@ -2,7 +2,7 @@
   <nav class="navbar">
     <router-link to="/"><img src="../assets/logo.svg" /></router-link>
     <div class="searchInput">
-      <input type="text" @change="searchPosts" />
+      <input type="text" />
       <TheIcon icon="search" />
     </div>
     <div class="navItems">
@@ -11,23 +11,23 @@
         <TheIcon icon="publish" />
       </button>
       <!-- dropdown -->
-      <!-- <div class="profileDropDown">
-        <img src="../assets/avatarDefault.png" width="42" height="42" />
-        <div class="dropdownMenu">
+      <div class="profileDropDown">
+        <TheAvatar :width="42" :height="42" style="cursor: pointer"></TheAvatar>
+        <!-- <div class="dropdownMenu">
           <ul class="profileMenu">
             <li><router-link to="/profile">個人主頁</router-link></li>
             <li>登出</li>
           </ul>
-        </div>
-      </div> -->
+        </div> -->
+      </div>
     </div>
   </nav>
 </template>
-<script setup>
+<script setup lang="ts">
 import { computed, ref } from "vue";
 import { useRouter } from "vue-router";
 //import { useStore } from "vuex";
-//import TheAvatar from "./TheAvatar.vue";
+import TheAvatar from "./TheAvatar.vue";
 import TheIcon from "./TheIcon.vue";
 
 const showDropdown = ref(false);
