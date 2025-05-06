@@ -2,6 +2,7 @@
   <header class="header">
     <NavBar />
   </header>
+  <router-view></router-view>
 </template>
 
 <script setup lang="ts">
