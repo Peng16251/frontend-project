@@ -25,14 +25,7 @@
               </div>
             </div>
             <div class="actions">
-              <div class="postActions">
-                <TheIcon icon="like" />
-                <span>1.5w</span>
-                <TheIcon icon="comment" />
-                <span>18w</span>
-                <TheIcon icon="favorite" />
-                <span>15w</span>
-              </div>
+              <PostActions />
               <span class="postPubDate">12h</span>
               <input
                 type="text"
@@ -54,6 +47,7 @@
 // import { useStore } from "vuex";
 // import { dateToRelative } from "../utils/date";
 // import PostActions from "./PostActions.vue";
+import PostActions from "./PostActions.vue";
 import TheAvatar from "./TheAvatar.vue";
 import TheIcon from "./TheIcon.vue";
 // import TheModal from "./TheModal.vue";
