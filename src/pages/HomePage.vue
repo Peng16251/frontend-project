@@ -14,14 +14,7 @@
             <TheAvatar />
             <span>張小風</span>
             <span class="postPubDate">12小時以前發布</span>
-            <div class="postActions">
-              <TheIcon icon="like" fill="none" stroke="#00000"></TheIcon>
-              <span>1.5w</span>
-              <TheIcon icon="comment" fill="none" stroke="#00000"></TheIcon>
-              <span>9w</span>
-              <TheIcon icon="like" fill="none" stroke="#00000"></TheIcon>
-              <span>8k</span>
-            </div>
+            <PostActions />
           </div>
           <div class="postDesc">
             <p>
@@ -36,6 +29,7 @@
 </template>
 <script setup lang="ts">
 import { computed, onMounted } from "vue";
+import PostActions from "../components/PostActions.vue";
 // import { useStore } from "vuex";
 import PostDetails from "../components/PostDetails.vue";
 // import PostItem from "../components/PostItem.vue";
@@ -89,28 +83,13 @@ onMounted(() => {
   font-size: 14px;
 }
 
-.postActions {
-  grid-area: actions;
-  justify-self: end;
-}
-
 .postDesc {
   margin-top: 28px;
   white-space: pre-line;
 }
 .postActions {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  justify-items: center;
-  column-gap: 16px;
-  row-gap: 4px;
-}
-
-.postActions > svg {
-  width: 32px;
-  height: 32px;
-  grid-row: 1 / 2;
-  cursor: pointer;
+  grid-area: actions;
+  justify-self: end;
 }
 
 .postActions > span {
