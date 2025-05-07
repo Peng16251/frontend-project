@@ -5,11 +5,12 @@
     </PostList>
 
     <!-- <PostDetails /> -->
-    <!-- <PostUpload /> -->
+    <PostUpload />
   </div>
 </template>
 <script setup lang="ts">
 import PostItem from "../components/PostItem.vue";
 import PostList from "../components/PostList.vue";
+import PostUpload from "../components/PostUpload.vue";
 </script>
 <style scoped></style>

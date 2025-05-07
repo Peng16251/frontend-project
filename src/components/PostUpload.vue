@@ -1,5 +1,5 @@
 ﻿<template>
-  <TheModal @close="store.commit('changeShowPostUpload', false)">
+  <TheModal>
     <div class="postUpload">
       <label class="upload">
         <TheIcon icon="upload-image" />
@@ -9,9 +9,8 @@
         <textarea
           placeholder="寫點什麼吧..."
           class="postContentInput"
-          v-model="description"
         ></textarea>
-        <button class="pubBtn">發布</button>
+        <TheButton class="pubBtn">發布</TheButton>
       </div>
     </div>
   </TheModal>
@@ -19,7 +18,7 @@
 <script setup>
 import { ref } from "vue";
 // import { useStore } from "vuex";
-// import TheButton from "./TheButton.vue";
+import TheButton from "./TheButton.vue";
 import TheIcon from "./TheIcon.vue";
 import TheModal from "./TheModal.vue";
 </script>
