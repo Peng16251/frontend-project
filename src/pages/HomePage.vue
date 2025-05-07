@@ -24,7 +24,8 @@
         </div>
       </div>
     </div>
-    <PostDetails />
+    <!-- <PostDetails /> -->
+    <PostUpload />
   </div>
 </template>
 <script setup lang="ts">
@@ -32,6 +33,7 @@ import { computed, onMounted } from "vue";
 import PostActions from "../components/PostActions.vue";
 // import { useStore } from "vuex";
 import PostDetails from "../components/PostDetails.vue";
+import PostUpload from "../components/PostUpload.vue";
 // import PostItem from "../components/PostItem.vue";
 // import PostList from "../components/PostList.vue";
 // import PostUpload from "../components/PostUpload.vue";
