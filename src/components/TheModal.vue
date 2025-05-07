@@ -1,38 +1,15 @@
 ﻿<template>
-  <TheModal>
-    <div class="postDetails">
-      <img class="postImage" src="" alt="" />
-      <div class="postMeta">
-        <div class="author">
-          <TheAvatar></TheAvatar>
-          <span>AAA</span>
-        </div>
-        <pre class="postDesc">
-                這是從我家楊台上拍的照片，希望大家喜歡，我家陽台上有好多數，術上有很多果實</pre
-        >
-        <div class="comments">
-          <div class="comment" v-for="n in 10">
-            <TheAvatar />
-            <span class="user">李白</span>
-            <span class="commentDate">1d</span>
-            <p class="commentContent">非常好～</p>
-          </div>
-        </div>
-        <div class="actions">
-          <PostActions />
-          <span class="postPubDate">12h</span>
-          <input
-            type="text"
-            name="comment"
-            id=""
-            class="commentInput"
-            placeholder="写一条评论吧！"
-          />
-          <button class="commentPubBtn">發布</button>
-        </div>
+  <Teleport to="body">
+    <div class="modal">
+      <div class="backdrop"></div>
+      <div class="modalContent">
+        <button class="closeBtn">
+          <TheIcon icon="close" />
+        </button>
+        <slot></slot>
       </div>
     </div>
-  </TheModal>
+  </Teleport>
 </template>
 <script setup lang="ts">
 // import { computed, ref } from "vue";
@@ -42,7 +19,7 @@
 import PostActions from "./PostActions.vue";
 import TheAvatar from "./TheAvatar.vue";
 import TheIcon from "./TheIcon.vue";
-import TheModal from "./TheModal.vue";
+// import TheModal from "./TheModal.vue";
 
 // const content = ref("");
 
@@ -51,6 +28,41 @@ import TheModal from "./TheModal.vue";
 // const comments = computed(() => store.state.comment.list);
 </script>
 <style scoped>
+.modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  left: 0;
+  top: 0;
+  display: grid;
+  place-items: center;
+}
+.backdrop {
+  background: rgba(0, 0, 0, 0.56);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+.modalContent {
+  position: relative;
+  background: white;
+  border-radius: 52px;
+  overflow: hidden;
+}
+.closeBtn {
+  position: absolute;
+  background: none;
+  border: none;
+  right: 14px;
+  top: 10px;
+}
+.closeBtn svg {
+  width: 54px;
+  height: 54px;
+}
 .postDetails {
   display: grid;
   grid-template-columns: 1fr minmax(auto, 300px);
