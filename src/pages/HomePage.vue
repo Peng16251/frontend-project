@@ -1,5 +1,5 @@
 ﻿<template>
-  <div class="content">
+  <div>
     <div class="postList">
       <div class="postItem" v-for="n in 10">
         <img
@@ -25,7 +25,7 @@
       </div>
     </div>
     <!-- <PostDetails /> -->
-    <PostUpload />
+    <!-- <PostUpload /> -->
   </div>
 </template>
 <script setup lang="ts">
@@ -200,11 +200,5 @@ onMounted(() => {
   font-size: 16px;
   margin-left: 20px;
   grid-column: 4 / 6;
-}
-.content {
-  width: 80vw;
-  max-width: 1124px;
-  margin: 0 auto;
-  margin-top: 88px;
 }
 </style>
