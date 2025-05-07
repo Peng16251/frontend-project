@@ -1,0 +1,23 @@
+﻿### formData 原始樣子
+POST https://jsonplaceholder.typicode.com/posts
+Content-Type: application/x-www-form-urlencoded
+
+title=foo&body=bar&userId=1
+
+### formData 簡化成用 js 原生的 URLSearchParams
+{{
+    const formData = new URLSearchParams({
+        title: "foo",
+        body: "bar",
+        userId: "1",
+    }).toString();
+
+    formData;  // ← 這是 httpyac 的 return 值
+}}
+
+@formData = {{formData}}
+
+POST https://jsonplaceholder.typicode.com/posts
+Content-Type: application/x-www-form-urlencoded
+
+{{formData}}
