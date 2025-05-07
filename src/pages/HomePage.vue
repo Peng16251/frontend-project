@@ -5,7 +5,7 @@
     </PostList>
 
     <!-- <PostDetails /> -->
-    <PostUpload />
+    <!-- <PostUpload /> -->
   </div>
 </template>
 <script setup lang="ts">
