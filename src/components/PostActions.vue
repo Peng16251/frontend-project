@@ -6,7 +6,7 @@
     <span>1.5w</span>
     <TheIcon icon="comment" fill="none" stroke="#00000"></TheIcon>
     <span>9w</span>
-    <TheIcon icon="like" fill="none" stroke="#00000"></TheIcon>
+    <TheIcon icon="favorite" fill="none" stroke="#00000"></TheIcon>
     <span>8k</span>
   </div>
 </template>
