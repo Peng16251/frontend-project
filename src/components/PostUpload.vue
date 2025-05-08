@@ -15,8 +15,9 @@
         <textarea
           placeholder="寫點什麼吧..."
           class="postContentInput"
+          v-model="description"
         ></textarea>
-        <TheButton class="pubBtn">發布</TheButton>
+        <TheButton class="pubBtn" @click="publishPost()">發布</TheButton>
       </div>
     </div>
   </TheModal>
@@ -24,7 +25,6 @@
 <script setup>
 import { ref } from "vue";
 import TheButton from "./TheButton.vue";
-``;
 import TheIcon from "./TheIcon.vue";
 import TheModal from "./TheModal.vue";
 import { useStore } from "vuex";
@@ -32,11 +32,21 @@ import { useStore } from "vuex";
 const store = useStore();
 const imageObjUrl = ref("");
 
+const image = ref(null);
+const description = ref("");
+
 async function handleImageUpload(event) {
   const imageFile = event.target.files[0];
   if (imageFile) {
     imageObjUrl.value = URL.createObjectURL(imageFile);
+    image.value = imageFile;
   }
+}
+function publishPost() {
+  store.dispatch("uploadPost", {
+    image: image.value,
+    description: description.value,
+  });
 }
 </script>
 <style scoped>
