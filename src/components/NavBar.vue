@@ -7,7 +7,7 @@
     </div>
     <div class="navItems">
       <router-link to="/"><TheIcon icon="home" /></router-link>
-      <button>
+      <button @click="publishPost()">
         <TheIcon icon="publish" />
       </button>
       <!-- dropdown -->
@@ -24,36 +24,14 @@
   </nav>
 </template>
 <script setup lang="ts">
-import { computed, ref } from "vue";
-import { useRouter } from "vue-router";
-//import { useStore } from "vuex";
+import { useStore } from "vuex";
 import TheAvatar from "./TheAvatar.vue";
 import TheIcon from "./TheIcon.vue";
 
-const showDropdown = ref(false);
-// const store = useStore();
-const router = useRouter();
-
-// const user = computed(() => store.state.user.user);
-
-// function publishPost() {
-//   store.commit("changeShowPostUpload", true);
-// }
-
-// async function searchPosts(e) {
-//   await store.dispatch("searchPosts", e.target.value);
-//   router.push({
-//     name: "search_result",
-//     params: {
-//       term: e.target.value,
-//     },
-//   });
-// }
-
-// async function logout() {
-//   await store.dispatch("logoutUser");
-//   router.push("/login");
-// }
+const store = useStore();
+function publishPost() {
+  store.commit("changeShowPostUpload", true);
+}
 </script>
 <style scoped>
 .navbar {

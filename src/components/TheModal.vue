@@ -3,7 +3,7 @@
     <div class="modal">
       <div class="backdrop"></div>
       <div class="modalContent">
-        <button class="closeBtn">
+        <button class="closeBtn" @click="$emit('close')">
           <TheIcon icon="close" />
         </button>
         <slot></slot>
@@ -12,20 +12,9 @@
   </Teleport>
 </template>
 <script setup lang="ts">
-// import { computed, ref } from "vue";
-// import { useStore } from "vuex";
-// import { dateToRelative } from "../utils/date";
-// import PostActions from "./PostActions.vue";
-import PostActions from "./PostActions.vue";
-import TheAvatar from "./TheAvatar.vue";
 import TheIcon from "./TheIcon.vue";
-// import TheModal from "./TheModal.vue";
 
-// const content = ref("");
-
-// const store = useStore();
-// const post = computed(() => store.getters.postDetails);
-// const comments = computed(() => store.state.comment.list);
+defineEmits(["close"]);
 </script>
 <style scoped>
 .modal {
