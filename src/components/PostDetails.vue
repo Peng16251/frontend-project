@@ -32,11 +32,22 @@
           <input
             type="text"
             name="comment"
+            v-model="content"
             id=""
             class="commentInput"
-            placeholder="写一条评论吧！"
+            placeholder="寫一條評論吧！"
           />
-          <button class="commentPubBtn">發布</button>
+          <button
+            @click="
+              store.dispatch('addComment', {
+                content,
+                postId: post.id,
+              })
+            "
+            class="commentPubBtn"
+          >
+            發布
+          </button>
         </div>
       </div>
     </div>
@@ -51,7 +62,7 @@ import TheAvatar from "./TheAvatar.vue";
 import TheIcon from "./TheIcon.vue";
 import TheModal from "./TheModal.vue";
 
-// const content = ref("");
+const content = ref("");
 
 const store = useStore();
 const hidePostDetails = () => {
@@ -59,7 +70,6 @@ const hidePostDetails = () => {
 };
 
 const post = computed(() => store.getters.postDetails);
-// const comments = computed(() => store.state.comment.list);
 </script>
 <style scoped>
 .postDetails {

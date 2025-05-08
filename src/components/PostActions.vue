@@ -5,7 +5,8 @@
       :fill="likedByMe ? '#FF3C3C' : 'none'"
       :stroke="likedByMe ? '#FF3C3C' : '#000000'"
       @click="$emit('likeClick')"
-    ></TheIcon>
+    ></TheIcon
+    ><span>{{ likes || "" }}</span>
     <TheIcon
       icon="comment"
       @click="emit('commentsClick')"
