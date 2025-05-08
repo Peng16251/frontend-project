@@ -1,15 +1,13 @@
 ﻿<template>
-  <TheModal>
+  <TheModal @close="hidePostDetails()">
     <div class="postDetails">
-      <img class="postImage" src="" alt="" />
+      <img class="postImage" :src="post.image" alt="" />
       <div class="postMeta">
         <div class="author">
-          <TheAvatar></TheAvatar>
-          <span>AAA</span>
+          <TheAvatar :src="post.user?.avatar"></TheAvatar>
+          <span>{{ post.user?.name }}</span>
         </div>
-        <pre class="postDesc">
-                這是從我家楊台上拍的照片，希望大家喜歡，我家陽台上有好多數，術上有很多果實</pre
-        >
+        <pre class="postDesc">{{ post.description }}</pre>
         <div class="comments">
           <div class="comment" v-for="n in 10">
             <TheAvatar />
@@ -19,8 +17,18 @@
           </div>
         </div>
         <div class="actions">
-          <PostActions />
-          <span class="postPubDate">12h</span>
+          <PostActions
+            :likes="post.liked_bies"
+            :comments="post.comments"
+            :favors="post.favored_bies"
+            @likeClick="store.dispatch('toggleLike', post.id)"
+            @favorClick="store.dispatch('toggleFavor', post.id)"
+            :likedByMe="post.likedByMe"
+            :favoredByMe="post.favoredByMe"
+          />
+          <span class="postPubDate">{{
+            dateToRelative(post.publishedAt)
+          }}</span>
           <input
             type="text"
             name="comment"
@@ -35,10 +43,9 @@
   </TheModal>
 </template>
 <script setup lang="ts">
-// import { computed, ref } from "vue";
-// import { useStore } from "vuex";
-// import { dateToRelative } from "../utils/date";
-// import PostActions from "./PostActions.vue";
+import { computed, ref } from "vue";
+import { useStore } from "vuex";
+import { dateToRelative } from "../utils/date";
 import PostActions from "./PostActions.vue";
 import TheAvatar from "./TheAvatar.vue";
 import TheIcon from "./TheIcon.vue";
@@ -46,8 +53,12 @@ import TheModal from "./TheModal.vue";
 
 // const content = ref("");
 
-// const store = useStore();
-// const post = computed(() => store.getters.postDetails);
+const store = useStore();
+const hidePostDetails = () => {
+  store.dispatch("hidePostDetails");
+};
+
+const post = computed(() => store.getters.postDetails);
 // const comments = computed(() => store.state.comment.list);
 </script>
 <style scoped>
