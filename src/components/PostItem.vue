@@ -12,7 +12,16 @@
         <TheAvatar :src="post?.user?.avatar" />
         <span>{{ post?.user?.name }}</span>
         <span class="postPubDate">{{ dateToRelative(post.publishedAt) }}</span>
-        <PostActions />
+        <PostActions
+          :likes="post.liked_bies"
+          :comments="post.comments"
+          :favors="post.favored_bies"
+          :likedByMe="post.likedByMe"
+          :favoredByMe="post.favoredByMe"
+          @likeClick="likePost(post.id)"
+          @favorClick="favorPost(post.id)"
+          @commentsClick="showComments(post.id)"
+        />
       </div>
       <div class="postDesc">
         <p>
@@ -24,9 +33,20 @@
 </template>
 <script setup lang="ts">
 import PostActions from "../components/PostActions.vue";
-// import { useStore } from "vuex";
+import { useStore } from "vuex";
 import { dateToRelative } from "../utils/date";
 import TheAvatar from "../components/TheAvatar.vue";
+
+const store = useStore();
+const likePost = (postId: Number) => {
+  store.dispatch("toggleLike", postId);
+};
+const favorPost = (postId: Number) => {
+  store.dispatch("toggleFavor", postId);
+};
+const showComments = (postId: Number) => {
+  store.dispatch("showPostDetails", postId);
+};
 
 defineProps({
   post: {
