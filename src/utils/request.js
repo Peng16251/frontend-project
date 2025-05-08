@@ -1,4 +1,5 @@
-﻿import { getJwtToken } from "./jwt.js";
+﻿import { getJwtToken } from "../apis/auth";
+
 export async function request(
 	url,
 	{ method = "GET", body, headers, auth = true } = {},

@@ -3,19 +3,26 @@
     <img src="../assets/phone.png" alt="" class="phoneImage" />
     <div class="loginForm">
       <img src="../assets/logo.svg" alt="" />
-      <form>
-        <input type="email" placeholder="信箱" />
-        <input v-if="!isLogin" type="text" placeholder="用戶名" />
-        <input type="text" placeholder="用戶名" />
+      <form @submit.prevent>
+        <input type="email" placeholder="信箱" v-model="email" />
+        <input
+          v-if="!isLogin"
+          type="text"
+          placeholder="用戶名"
+          v-model="username"
+        />
         <input type="password" placeholder="密码" v-model="password" />
-        <button type="submit" class="loginButton">
+        <button type="submit" class="loginButton" @click="register">
           {{ isLogin ? "登入" : "註冊" }}
         </button>
         <p @click="isLogin = !isLogin" class="info">
           {{ isLogin ? "還沒有帳號？ 點擊註冊" : "已有帳號？ 點擊登入" }}
         </p>
         <div v-if="!isLogin" class="agreement">
-          <input type="checkbox" />勾選表示同意隱私協議何使用規範
+          <input
+            type="checkbox"
+            v-model="agreementChecked"
+          />勾選表示同意隱私協議何使用規範
         </div>
       </form>
     </div>
@@ -23,7 +30,30 @@
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 const isLogin = ref(true);
+const email = ref("");
+const username = ref("");
+const password = ref("");
+const agreementChecked = ref(false);
+
+const store = useStore();
+const router = useRouter();
+
+async function register() {
+  if (!agreementChecked.value) {
+    alert("請縣閱讀並同意同意隱私協議和使用規範");
+    return;
+  }
+  await store.dispatch("registerUser", {
+    email: email.value,
+    username: username.value,
+    password: password.value,
+  });
+  // router.replace({ name: "home" });
+  router.replace("/");
+}
 </script>
 <style scoped>
 .loginPage {
