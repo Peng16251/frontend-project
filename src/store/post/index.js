@@ -6,7 +6,10 @@ import {
 } from "../../apis/post";
 export const post = {
 	state() {
-		return { list: [], };
+		return {
+			list: [],
+			currentId: null,
+		};
 	},
 	mutations: {
 		initializePosts(state, posts) {
@@ -30,6 +33,9 @@ export const post = {
 			}
 			post.favoredByMe = isFavor;
 		},
+		setCurrentId(state, id) {
+			state.currentId = id;
+		},
 	},
 	actions: {
 		async uploadPost({ commit, dispatch }, { image, description }) {
@@ -49,6 +55,19 @@ export const post = {
 		async toggleFavor({ commit }, id) {
 			const isFavor = await favorPost(id);
 			commit("toggleFavor", { id, isFavor });
+		},
+		async showPostDetails({ commit }, id) {
+			commit("setCurrentId", id);
+			commit("changeShowPostDetails", true);
+		},
+		async hidePostDetails({ commit }) {
+			commit("setCurrentId", null);
+			commit("changeShowPostDetails", false);
+		},
+	},
+	getters: {
+		postDetails(state) {
+			return state.list.find((post) => post.id === state.currentId)
 		},
 	},
 };

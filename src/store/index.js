@@ -10,11 +10,17 @@ export const store = createStore({
 		comment,
 	},
 	state() {
-		return { showPostUpload: false };
+		return {
+			showPostUpload: false,
+			showPostDetails: false
+		};
 	},
 	mutations: {
 		changeShowPostUpload(state, show) {
 			state.showPostUpload = show;
+		},
+		changeShowPostDetails(state, show) {
+			state.showPostDetails = show;
 		}
 	},
 	actions: {},
