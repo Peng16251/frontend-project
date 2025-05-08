@@ -1,17 +1,37 @@
 ﻿<template>
-  <span>張小風</span>
-  <span class="postPubDate">12小時以前發布</span>
   <div class="postActions">
-    <TheIcon icon="like" fill="none" stroke="#00000"></TheIcon>
-    <span>1.5w</span>
-    <TheIcon icon="comment" fill="none" stroke="#00000"></TheIcon>
-    <span>9w</span>
-    <TheIcon icon="favorite" fill="none" stroke="#00000"></TheIcon>
-    <span>8k</span>
+    <TheIcon
+      icon="like"
+      :fill="likedByMe ? '#FF3C3C' : 'none'"
+      :stroke="likedByMe ? '#FF3C3C' : '#000000'"
+      @click="$emit('likeClick')"
+    ></TheIcon>
+    <TheIcon
+      icon="comment"
+      @click="emit('commentsClick')"
+      fill="none"
+      stroke="#000000"
+    /><span>{{ comments || "" }}</span>
+    <TheIcon
+      icon="favorite"
+      @click="emit('favorClick')"
+      :fill="favoredByMe ? '#FFD12E' : 'none'"
+      :stroke="favoredByMe ? '#FFD12E' : '#000000'"
+    /><span>{{ favors || "" }}</span>
   </div>
 </template>
 <script setup lang="ts">
 import TheIcon from "./TheIcon.vue";
+
+defineProps({
+  likes: Number,
+  comments: Number,
+  favors: Number,
+  likedByMe: Boolean,
+  favoredByMe: Boolean,
+});
+
+const emit = defineEmits(["likeClick", "commentsClick", "favorClick"]);
 </script>
 <style scoped>
 .postActions {
