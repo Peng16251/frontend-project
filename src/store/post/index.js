@@ -1,13 +1,9 @@
-import {
-	createPost,
-	loadPosts,
-	likePost,
-	favorPost,
-} from "../../apis/post";
+import { createPost, favorPost, likePost, loadPosts } from "../../apis/post";
 export const post = {
 	state() {
 		return {
 			list: [],
+			searchResult: [],
 			currentId: null,
 		};
 	},
@@ -40,6 +36,9 @@ export const post = {
 			const post = state.list.find((post) => post.id === id);
 			post.comments++;
 		},
+		setPostsSearchResult(state, posts) {
+			state.searchResult = posts;
+		},
 	},
 	actions: {
 		async uploadPost({ commit, dispatch }, { image, description }) {
@@ -69,10 +68,14 @@ export const post = {
 			commit("setCurrentId", null);
 			commit("changeShowPostDetails", false);
 		},
+		async searchPosts({ commit }, term) {
+			const posts = await loadPosts("filters[description][$contains]=" + term);
+			commit("setPostsSearchResult", posts);
+		},
 	},
 	getters: {
 		postDetails(state) {
-			return state.list.find((post) => post.id === state.currentId)
+			return state.list.find((post) => post.id === state.currentId);
 		},
 	},
 };
