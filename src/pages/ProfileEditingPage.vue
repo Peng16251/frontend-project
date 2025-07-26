@@ -69,7 +69,7 @@ const profileData = reactive({
 
 async function uploadAvatar(e) {
   const file = e.target.files[0];
-  const url = await uploadFile(file);
+  const url = await uploadFile(file, "user");
   profileData.avatar = url;
 }
 

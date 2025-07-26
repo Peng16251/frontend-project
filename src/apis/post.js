@@ -1,41 +1,31 @@
 ﻿import { request } from "../utils/request";
 import { getJwtToken, getUser } from "./auth";
 export async function createPost(image, description) {
-	const formData = new FormData(); // strapi 接收 formdata 格式來處理 image
-	formData.append("files.image", image); // strapi => keys 為 files.image value 為 image
-	formData.append("data", JSON.stringify({ description })); // strapi => 其他的存為 data
+  const formData = new FormData();
+  formData.append("image", image);
+  formData.append("description", description);
 
-	await fetch("/api/posts", {
-		method: "POST",
-		body: formData,
-		headers: {
-			Authorization: `Bearer ${getJwtToken()}`,
-		},
-	});
+  await fetch("/api/posts", {
+    method: "POST",
+    body: formData,
+    headers: {
+      Authorization: `Bearer ${getJwtToken()}`,
+    },
+  });
 }
 
 /**
  *
- * @param {string} filters 過濾條件，例如自己發的
+ * @param {string} filters 過濾條件
  * @returns
  */
 export async function loadPosts(filters = "") {
-	const response = await request(
-		"/api/posts?populate=*" + (filters && `&${filters}`),
-	);
-	// TODO
-	return response.data.map((post) => ({
-		id: post?.id,
-		...post?.attributes,
-		image: post?.attributes?.image?.data?.[0]?.attributes?.url,
-		user: {
-			id: post?.attributes?.user?.data?.id,
-			...post?.attributes?.user?.data?.attributes,
-		},
-	}));
+  const data = await request("/api/posts" + (filters ? `?${filters}` : ""));
+  return data;
 }
+
 export async function loadPostsByMe() {
-	return loadPosts(`filters[user][id][$eq]=${getUser().id}`);
+  return loadPosts(`authorId=${getUser().id}`);
 }
 
 /**
@@ -44,25 +34,19 @@ export async function loadPostsByMe() {
  * @returns
  */
 export async function loadPostsLikedOrFavoredByMe(type = "likes") {
-	const response = await request(
-		`/api/users/me?populate[${type}][populate][0]=image`,
-	);
-	return response[type].map((post) => ({
-		...post,
-		image: post?.image?.[0].url,
-	}));
+  return loadPosts(`interactedByUserId=${getUser().id}&actionType=${type}`);
 }
 
 export async function likePost(id) {
-	const response = await request(`/api/posts/${id}/like`, {
-		method: "PUT",
-	});
-	return response.data;
+  const response = await request(`/api/posts/${id}/like`, {
+    method: "PUT",
+  });
+  return response.data;
 }
 
 export async function favorPost(id) {
-	const response = await request(`/api/posts/${id}/favor`, {
-		method: "PUT",
-	});
-	return response.data;
+  const response = await request(`/api/posts/${id}/favor`, {
+    method: "PUT",
+  });
+  return response.data;
 }
