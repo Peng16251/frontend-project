@@ -27,7 +27,7 @@
       </div>
     </div>
     <div class="tabContent">
-      <p>{{ myPosts[currentTab].length }}</p>
+      <p>{{ myPosts[currentTab].length }} 篇貼文</p>
       <div class="posts">
         <img
           v-for="post in myPosts[currentTab]"
