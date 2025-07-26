@@ -17,7 +17,7 @@
     <div class="tabs">
       <div
         v-for="(tab, index) in tabs"
-        class="tab active"
+        class="tab"
         :class="{ active: index === currentTab }"
         :key="index"
         @click="currentTab = index"
