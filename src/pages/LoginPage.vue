@@ -11,7 +11,7 @@
           placeholder="用戶名"
           v-model="username"
         />
-        <input type="password" placeholder="密码" v-model="password" />
+        <input type="password" placeholder="密碼" v-model="password" />
         <button
           type="submit"
           class="loginButton"
