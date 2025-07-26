@@ -9,9 +9,7 @@
         </p>
         <p class="handle">{{ user.name }}</p>
         <div class="description">
-          <pre>
-           {{ user.intro }}
-          </pre>
+          <pre>{{ user.intro }}</pre>
         </div>
         <p class="website">{{ user.website }}</p>
       </div>
