@@ -5,13 +5,13 @@
       <div class="postMeta">
         <div class="author">
           <TheAvatar :src="post.user?.avatar"></TheAvatar>
-          <span>{{ post.user?.name }}</span>
+          <span>{{ post.user?.username }}</span>
         </div>
         <pre class="postDesc">{{ post.description }}</pre>
         <div class="comments">
           <div class="comment" v-for="comment in comments">
             <TheAvatar :src="comment.user?.avatar" />
-            <span class="user">{{ comment.user?.name }}</span>
+            <span class="user">{{ comment.user?.username }}</span>
             <span class="commentDate">{{
               dateToRelative(comment.pubDate)
             }}</span>
