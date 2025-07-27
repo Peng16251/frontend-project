@@ -106,6 +106,7 @@ const comments = computed(() => store.state.comment.list);
   width: 100%;
   white-space: pre-wrap;
   margin-top: 24px;
+  margin-bottom: 24px;
 }
 .comments {
   display: grid;
