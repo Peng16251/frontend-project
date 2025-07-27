@@ -12,7 +12,7 @@
   </template>
   <footer class="footer">
     <div class="footer.inside" :class="{ inside: $route.name !== 'login' }">
-      © 2025 Your Company. All rights reserved.
+      © 2025 Gatherin. All rights reserved.
     </div>
   </footer>
 </template>
