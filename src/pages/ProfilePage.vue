@@ -4,7 +4,7 @@
       <TheAvatar :width="186" :height="186" :src="user.avatar" />
       <div class="profile">
         <p class="name">
-          <span>{{ user.username }}</span
+          <span>@{{ user.username }}</span
           ><router-link to="/profile/edit">編輯個人資料</router-link>
         </p>
         <p class="handle">{{ user.name }}</p>

@@ -11,7 +11,7 @@
     <div class="postInfo">
       <div class="postMeta">
         <TheAvatar :src="post?.user?.avatar" />
-        <span>{{ post?.user?.username }}</span>
+        <span>@{{ post?.user?.username }}</span>
         <span class="postPubDate">{{ dateToRelative(post.publishedAt) }}</span>
         <PostActions
           :likes="post.liked_bies"
