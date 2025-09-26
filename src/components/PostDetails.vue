@@ -120,7 +120,8 @@ const comments = computed(() => store.state.comment.list);
   align-items: start;
   overflow-y: auto;
   margin-top: 24px;
-  height: 100%;
+  max-height: 200px;
+  padding-right: 8px;
 }
 .comment {
   display: grid;
