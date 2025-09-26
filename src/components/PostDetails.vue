@@ -5,13 +5,14 @@
       <div class="postMeta">
         <div class="author">
           <TheAvatar :src="post.user?.avatar"></TheAvatar>
-          <span>{{ post.user?.name }}</span>
+          <span>@{{ post.user?.username }}</span>
         </div>
         <pre class="postDesc">{{ post.description }}</pre>
+        <hr style="border-top: 1px dashed transparent" />
         <div class="comments">
           <div class="comment" v-for="comment in comments">
             <TheAvatar :src="comment.user?.avatar" />
-            <span class="user">{{ comment.user?.name }}</span>
+            <span class="user">@{{ comment.user?.username }}</span>
             <span class="commentDate">{{
               dateToRelative(comment.pubDate)
             }}</span>
@@ -106,6 +107,9 @@ const comments = computed(() => store.state.comment.list);
   width: 100%;
   white-space: pre-wrap;
   margin-top: 24px;
+  margin-bottom: 24px;
+  overflow-y: auto;
+  height: 115px;
 }
 .comments {
   display: grid;
@@ -114,6 +118,7 @@ const comments = computed(() => store.state.comment.list);
   grid-gap: 28px;
   align-items: start;
   overflow-y: auto;
+  margin-top: 24px;
   height: 100%;
 }
 .comment {

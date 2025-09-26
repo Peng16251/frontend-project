@@ -11,8 +11,8 @@
     <router-view></router-view>
   </template>
   <footer class="footer">
-    <div class="footer" :class="{ inside: $route.name !== 'login' }">
-      © 2023 Your Company. All rights reserved.
+    <div class="footer.inside" :class="{ inside: $route.name !== 'login' }">
+      © 2025 Gatherin. All rights reserved.
     </div>
   </footer>
 </template>

@@ -1,4 +1,5 @@
 import { createPost, favorPost, likePost, loadPosts } from "../../apis/post";
+import { getUser } from "../../apis/auth";
 export const post = {
 	state() {
 		return {
@@ -48,7 +49,7 @@ export const post = {
 			commit("changeShowPostUpload", false);
 		},
 		async loadAllPosts({ commit }) {
-			const posts = await loadPosts();
+			const posts = await loadPosts(`viewerUserId=${getUser().id}`);
 			commit("initializePosts", posts);
 		},
 		async toggleLike({ commit }, id) {
