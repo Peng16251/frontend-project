@@ -45,7 +45,8 @@
               store.dispatch('addComment', {
                 content,
                 postId: post.id,
-              })
+              });
+              content = '';
             "
             class="commentPubBtn"
           >
