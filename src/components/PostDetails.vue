@@ -63,7 +63,6 @@ import { useStore } from "vuex";
 import { dateToRelative } from "../utils/date";
 import PostActions from "./PostActions.vue";
 import TheAvatar from "./TheAvatar.vue";
-import TheIcon from "./TheIcon.vue";
 import TheModal from "./TheModal.vue";
 
 const content = ref("");

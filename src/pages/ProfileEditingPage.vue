@@ -67,8 +67,9 @@ const profileData = reactive({
   website: user.value.website,
 });
 
-async function uploadAvatar(e) {
-  const file = e.target.files[0];
+async function uploadAvatar(e: Event) {
+  const target = e.target as HTMLInputElement;
+  const file = target.files?.[0];
   const url = await uploadFile(file, "user");
   profileData.avatar = url;
 }
