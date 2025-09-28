@@ -1,0 +1,13 @@
+﻿### Create Comment
+# @noRejectUnauthorized
+POST https://localhost:7214/api/Comments
+Content-Type: application/json
+Authorization: Bearer token
+
+{
+  "data": {
+    "content": "this is a message send by httpyac",
+    "post": 1
+  }
+}
+

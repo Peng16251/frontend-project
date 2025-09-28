@@ -4,14 +4,12 @@
       <TheAvatar :width="186" :height="186" :src="user.avatar" />
       <div class="profile">
         <p class="name">
-          <span>{{ user.name }}</span
+          <span>@{{ user.username }}</span
           ><router-link to="/profile/edit">編輯個人資料</router-link>
         </p>
-        <p class="handle">{{ user.username }}</p>
+        <p class="handle">{{ user.name }}</p>
         <div class="description">
-          <pre>
-           {{ user.intro }}
-          </pre>
+          <pre>{{ user.intro }}</pre>
         </div>
         <p class="website">{{ user.website }}</p>
       </div>
@@ -19,7 +17,7 @@
     <div class="tabs">
       <div
         v-for="(tab, index) in tabs"
-        class="tab active"
+        class="tab"
         :class="{ active: index === currentTab }"
         :key="index"
         @click="currentTab = index"
@@ -29,7 +27,7 @@
       </div>
     </div>
     <div class="tabContent">
-      <p>{{ myPosts[currentTab].length }}</p>
+      <p>{{ myPosts[currentTab].length }} 篇貼文</p>
       <div class="posts">
         <img
           v-for="post in myPosts[currentTab]"

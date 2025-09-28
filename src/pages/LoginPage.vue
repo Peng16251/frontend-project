@@ -1,6 +1,6 @@
 ﻿<template>
   <div class="loginPage">
-    <img src="../assets/phone.png" alt="" class="phoneImage" />
+    <!-- <img src="../assets/phone.png" alt="" class="phoneImage" /> -->
     <div class="loginForm">
       <img src="../assets/logo.svg" alt="" />
       <form @submit.prevent>
@@ -11,7 +11,7 @@
           placeholder="用戶名"
           v-model="username"
         />
-        <input type="password" placeholder="密码" v-model="password" />
+        <input type="password" placeholder="密碼" v-model="password" />
         <button
           type="submit"
           class="loginButton"
@@ -70,9 +70,9 @@ async function login() {
 <style scoped>
 .loginPage {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* grid-template-columns: 1fr 1fr; */
   align-items: center;
-  gap: 5vw;
+  /* gap: 5vw; */
   width: 100vw;
   height: 100vh;
   max-width: 100%;
@@ -89,7 +89,7 @@ async function login() {
 }
 
 .loginForm {
-  justify-self: start;
+  justify-self: center;
   box-shadow: 0px 4px 48px rgba(0, 0, 0, 0.06);
   border-radius: 32px;
   background: white;

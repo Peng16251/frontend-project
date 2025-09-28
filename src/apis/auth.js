@@ -17,32 +17,48 @@ export function getUser(user) {
 }
 
 export async function register(email, username, password) {
-	const result = await request("/api/auth/local/register", {
-		method: "POST",
-		body: { email, username, password, name: username },
-		auth: false,
-	});
-	setJwtToken(result.jwt);
-	saveUser(result.user);
-	return result.user;
+	try {
+		const result = await request("/api/auth/local/register", {
+			method: "POST",
+			body: { email, username, password, name: username },
+			auth: false,
+		});
+
+		if (!result || !result.jwt || !result.user) {
+			throw new Error("註冊失敗");
+		}
+
+		setJwtToken(result.jwt);
+		saveUser(result.user);
+		return result.user;
+	} catch (error) {
+		throw new Error(
+			error?.message
+		);
+	}
 }
 
 export async function login(email, password) {
-	// try {
-	const result = await request("/api/auth/local", {
-		method: "POST",
-		auth: false,
-		body: {
-			identifier: email, // strapi 使用 identifier 而不是 email
-			password,
-		},
-	});
-	setJwtToken(result.jwt);
-	saveUser(result.user);
-	return result.user;
-	// } catch (error) {
-	//   throw error;
-	// }
+	try {
+		const result = await request("/api/auth/local", {
+			method: "POST",
+			auth: false,
+			body: {
+				identifier: email,
+				password,
+			},
+		});
+
+		if (!result || !result.jwt || !result.user) {
+			throw new Error("登入失敗，請稍後再試");
+		}
+
+		setJwtToken(result.jwt);
+		saveUser(result.user);
+		return result.user;
+	} catch (error) {
+		throw new Error(error?.message );
+	}
 }
 
 export function logout() {

@@ -1,4 +1,5 @@
 import { createPost, favorPost, likePost, loadPosts } from "../../apis/post";
+import { getUser } from "../../apis/auth";
 export const post = {
 	state() {
 		return {
@@ -48,7 +49,7 @@ export const post = {
 			commit("changeShowPostUpload", false);
 		},
 		async loadAllPosts({ commit }) {
-			const posts = await loadPosts();
+			const posts = await loadPosts(`viewerUserId=${getUser().id}`);
 			commit("initializePosts", posts);
 		},
 		async toggleLike({ commit }, id) {
@@ -69,7 +70,7 @@ export const post = {
 			commit("changeShowPostDetails", false);
 		},
 		async searchPosts({ commit }, term) {
-			const posts = await loadPosts("filters[description][$contains]=" + term);
+			const posts = await loadPosts(`description=${term}`);
 			commit("setPostsSearchResult", posts);
 		},
 	},

@@ -1,12 +1,16 @@
 ﻿<template>
   <nav class="navbar">
-    <router-link to="/"><img src="../assets/logo.svg" /></router-link>
+    <router-link to="/" @click="term = ''"
+      ><img src="../assets/logo.svg"
+    /></router-link>
     <div class="searchInput">
-      <input type="text" @change="searchPosts" />
+      <input type="text" v-model="term" @change="searchPosts" />
       <TheIcon icon="search" />
     </div>
     <div class="navItems">
-      <router-link to="/"><TheIcon icon="home" /></router-link>
+      <router-link to="/" @click="term = ''"
+        ><TheIcon icon="home"
+      /></router-link>
       <button @click="publishPost()">
         <TheIcon icon="publish" />
       </button>
@@ -43,6 +47,7 @@ import TheIcon from "./TheIcon.vue";
 const showDropdown = ref(false);
 const store = useStore();
 const router = useRouter();
+const term = ref("");
 
 const user = computed(() => store.state.user.user);
 
@@ -50,12 +55,12 @@ function publishPost() {
   store.commit("changeShowPostUpload", true);
 }
 
-async function searchPosts(e) {
-  await store.dispatch("searchPosts", e.target.value);
+async function searchPosts() {
+  await store.dispatch("searchPosts", term.value);
   router.push({
     name: "search_result",
     query: {
-      term: e.target.value,
+      term: term.value,
     },
   });
 }
