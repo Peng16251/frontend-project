@@ -67,7 +67,17 @@ const tabs = ref([
 
 const currentTab = ref(0);
 
-const myPosts = reactive({
+interface Post {
+  id: number | string;
+  image: string;
+  // ...
+}
+
+interface MyPostsState {
+  [key: number]: Post[];
+}
+
+const myPosts = reactive<MyPostsState>({
   0: [],
   1: [],
   2: [],
